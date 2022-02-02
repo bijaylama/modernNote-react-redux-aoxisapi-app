@@ -27,7 +27,6 @@ const SideBar = () => {
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             m: 4,
-            borderRadius: 2,
             width: drawerWidth,
             boxSizing: "border-box",
           },
