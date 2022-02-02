@@ -36,7 +36,7 @@ const SideBar = () => {
         variant="permanent"
         anchor="left"
       >
-        <Box sx={{}}>
+        <Box>
           <Toolbar>
             <IconButton
               size="large"
@@ -52,7 +52,7 @@ const SideBar = () => {
             </Typography>
           </Toolbar>
         </Box>
-        <Divider />
+        <Divider variant="middle" />
         <List>
           {SidebarItem.map((text, index) => (
             <ListItem button key={text.id}>

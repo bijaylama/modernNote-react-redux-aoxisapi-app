@@ -14,6 +14,7 @@ const Header = () => {
             display: "flex",
             flexDirection: "row",
             boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
+            borderRadius: 2,
           }}
         >
           <Toolbar>

@@ -7,7 +7,7 @@ const Footer = () => {
       <Paper
         sx={{
           boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
-
+          borderRadius: 2,
           pt: 2,
           pb: 2,
           pl: 4,

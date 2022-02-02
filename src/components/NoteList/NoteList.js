@@ -11,6 +11,7 @@ const NoteList = () => {
       <Paper
         sx={{
           boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
+          borderRadius: 2,
         }}
       >
         <Typography sx={{ pl: 4, pr: 4, pt: 2, pb: 2 }} variant="h5">
