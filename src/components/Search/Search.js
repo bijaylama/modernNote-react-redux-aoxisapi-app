@@ -4,19 +4,25 @@ import { Box, Input, Paper, Toolbar, Typography } from "@mui/material";
 
 const Search = () => {
   return (
-    <Toolbar>
+    <Toolbar sx={{ ml: 1, mr: 1 }}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           width: "100%",
           backgroundColor: "#F0F3FA",
-          p: 2,
+          pl: 2,
+          pr: 2,
+          pt: 1,
+          pb: 1,
           borderRadius: 2,
+          alignItems: "center",
         }}
       >
         <Input
-          sx={{ flexGrow: 1 }}
+          sx={{
+            flexGrow: 1,
+          }}
           placeholder="Search Your Notes..."
           disableUnderline
         />

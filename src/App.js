@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 
 function App() {
   return (
-    <Grid container sx={{ backgroundColor: "#F0F3FA", height: "100vh" }}>
+    <Grid container sx={{ backgroundColor: "#F0F3FA" }}>
       <Box
         sx={{
           display: "flex",

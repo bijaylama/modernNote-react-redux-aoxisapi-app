@@ -29,6 +29,8 @@ const SideBar = () => {
             m: 4,
             width: drawerWidth,
             boxSizing: "border-box",
+            boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
+            borderRadius: 2,
           },
         }}
         variant="permanent"
