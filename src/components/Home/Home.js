@@ -4,6 +4,7 @@ import React from "react";
 import Header from "../Header/Header";
 import NoteList from "../NoteList/NoteList";
 import Footer from "../Footer/Footer";
+import Forms from "../Forms/Forms";
 const Home = () => {
   return (
     <Box
@@ -16,6 +17,7 @@ const Home = () => {
       }}
     >
       <Header />
+      <Forms />
       <NoteList />
       <Footer />
     </Box>
