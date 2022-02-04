@@ -7,6 +7,7 @@ import { IconButton, Typography } from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import BasicCard from "../BasicCard/BasicCard";
 
 export default function MenuCard() {
   const [open, setOpen] = useState(false);
@@ -20,25 +21,27 @@ export default function MenuCard() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const getComponent = () => (
+    <>
+      <MoreHorizIcon />
+    </>
+  );
   return (
     <div>
-      <IconButton onClick={handleOpen}>
-        <MoreHorizIcon />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
+      <BasicCard
+        handleClose={handleClose}
+        open={open}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right",
         }}
-        keepMounted
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
         }}
-        open={open}
-        onClose={handleClose}
+        anchorEl={anchorEl}
+        handleOpen={handleOpen}
+        getComponent={getComponent()}
       >
         <MenuItem onClick={handleClose}>
           <RemoveRedEyeOutlinedIcon
@@ -58,7 +61,7 @@ export default function MenuCard() {
           />
           <Typography sx={{ pl: 1, pr: 1 }}>Delete</Typography>
         </MenuItem>
-      </Menu>
+      </BasicCard>
     </div>
   );
 }

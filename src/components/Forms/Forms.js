@@ -1,66 +1,79 @@
-import React from "react";
+import react, { useState } from "react";
 import {
   Box,
-  Button,
-  Input,
   Paper,
-  Stack,
-  Toolbar,
+  ToggleButton,
+  ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
-const Forms = () => {
+import BasicForm from "../common/BasicForm/BasicForm";
+import BasicButton from "../common/BasicButton/BasicButton";
+import { myStyle } from "./myStyle";
+import { useDispatch } from "react-redux";
+import { addNote } from "../../redux/noteSlice";
+import { CirclePicker } from "react-color";
+import ColorPicker from "../common/ColorPicker/ColorPicker";
+
+const Forms = ({ onClick }) => {
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
+  const [bg, setBg] = useState("web");
+
+  const handleChangeComplete = (color, event) => {
+    this.setState({ bg: color.hex });
+  };
+
+  const dispatch = useDispatch();
+  //
+  // on submit handlebutton
+  //
+  // const handleButton = () => {};
+
   return (
-    <Box sx={{ mt: 3 }}>
-      <Paper
-        sx={{
-          boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
-          borderRadius: 2,
-          p: 4,
-        }}
-      >
-        <Input
-          multiline
-          size="medium"
-          maxRows={4}
-          sx={{
-            letterSpacing: 0.8,
-          }}
-          disableUnderline
-          fullWidth
+    <Box sx={myStyle.wrapper}>
+      <Paper sx={myStyle.myPaper}>
+        {/* title basic form
+        ///
+        /// */}
+        <BasicForm
+          sx={myStyle.myBasicForm}
           placeholder="Title..."
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <Input
-          multiline
-          size="medium"
-          maxRows={8}
-          rows={4}
-          sx={{
-            mt: 3,
-            letterSpacing: 0.8,
-          }}
-          disableUnderline
-          fullWidth
+        {/* //
+          detail basic form
+        // */}
+        <BasicForm
+          sx={{ ...myStyle.myBasicForm, mt: 3 }}
           placeholder="Take a note..."
+          rows={4}
+          onChange={(e) => setDetail(e.target.value)}
         />
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            sx={{ borderRadius: 2, mr: 2 }}
-            variant="outlined"
-            color="primary1"
-            startIcon={<CloseFullscreenIcon />}
-          >
-            Close
-          </Button>
-          <Button
-            sx={{ borderRadius: 2 }}
-            variant="contained"
-            color="primary1"
-            endIcon={<SendIcon />}
-          >
-            Save
-          </Button>
+        <Box sx={myStyle.myBox}>
+          {/* //
+          basic Button
+          // */}
+          <ColorPicker />
+          <Box>
+            <BasicButton
+              startIcon={<CloseFullscreenIcon />}
+              sx={{ ...myStyle.myButton, mr: 2 }}
+              variant="outlined"
+              onClick={onClick}
+            >
+              Close
+            </BasicButton>
+            <BasicButton
+              startIcon={<SendIcon />}
+              sx={myStyle.myButton}
+              variant="contained"
+              onClick={() => dispatch(addNote({ title }))}
+            >
+              Save
+            </BasicButton>
+          </Box>
         </Box>
       </Paper>
     </Box>

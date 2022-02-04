@@ -1,27 +1,51 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {
-  value: 0,
-};
+// const initialState = {
+//   notes: [
+//     {
+//       id: 1,
+//       title: "this is title",
+//       detail: "this is detail",
+//       favorite: true,
+//     },
+//   ],
+// };
 
+//
+// get notes api
+//
+export const getNotesAsync = createAsyncThunk("notes/getNotes", async () => {
+  const response = await fetch("http://localhost:7000/notes");
+  if (response.ok) {
+    const notes = await response.json();
+    return { notes };
+  }
+});
+//
+// add note on api
+//
+// export const addNoteAsync = createAsyncThunk("notes/addNote", async () =>{
+//   const response = await fe
+// })
 export const noteSlice = createSlice({
-  name: "counter",
-  initialState,
+  name: "notes",
+  initialState: [],
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
+    addNote: (state, action) => {
+      state.title = action.payload.title;
     },
-    decrement: (state) => {
-      state.value -= 1;
+    editNote: (state, action) => {},
+    deleteNote: (state, action) => {},
+  },
+  extraReducers: {
+    [getNotesAsync.pending]: (state) => {},
+    [getNotesAsync.fulfilled]: (state, action) => {
+      return action.payload.notes;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement } = noteSlice.actions;
+export const { addNote } = noteSlice.actions;
 
 export default noteSlice.reducer;

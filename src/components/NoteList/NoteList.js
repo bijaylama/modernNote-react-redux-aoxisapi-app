@@ -1,43 +1,41 @@
 import { Box, Input, Paper, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNotesAsync } from "../../redux/noteSlice";
 import CardList from "../common/CardList/CardList";
 import Search from "../Search/Search";
+import { myStyle } from "./myStyle";
 
 const noteArray = [{}];
 
 const NoteList = () => {
+  const dispatch = useDispatch();
+  const notes = useSelector((state) => state.notes);
+  console.log(notes);
+
+  useEffect(() => {
+    dispatch(getNotesAsync());
+  }, [dispatch]);
   return (
-    <Box sx={{ mt: 3 }}>
-      <Paper
-        sx={{
-          boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
-          borderRadius: 2,
-        }}
-      >
-        <Typography sx={{ pl: 4, pr: 4, pt: 2, pb: 2 }} variant="h5">
+    <Box sx={myStyle.wrapper}>
+      <Paper sx={myStyle.myPaper}>
+        <Typography sx={myStyle.title} variant="h5">
           Your Notes
         </Typography>
         {/* SEARCH BAR COMPONENT */}
         <Search />
         {/* CARD COMPONENT */}
-        <Box
-          sx={{
-            display: "grid",
-            gridGap: "2rem",
-            m: 4,
-            pb: 4,
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          }}
-        >
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
-          <CardList />
+        <Box sx={myStyle.cardComponent}>
+          {notes.map((note) => (
+            <CardList
+              id={note.id}
+              title={note.title}
+              details={note.details}
+              favorite={note.favorite}
+              date={note.date}
+              color={note.color}
+            />
+          ))}
         </Box>
       </Paper>
     </Box>
