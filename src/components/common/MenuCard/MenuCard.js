@@ -43,6 +43,7 @@ export default function MenuCard() {
         handleOpen={handleOpen}
         getComponent={getComponent()}
       >
+        {/*                view field                      */}
         <MenuItem onClick={handleClose}>
           <RemoveRedEyeOutlinedIcon
             fontSize="12"
@@ -50,10 +51,12 @@ export default function MenuCard() {
           />
           <Typography sx={{ pl: 1, pr: 1 }}>View</Typography>
         </MenuItem>
+        {/*           // edit field              */}
         <MenuItem onClick={handleClose}>
           <EditOutlinedIcon fontSize="12" sx={{ color: "text.secondary" }} />
           <Typography sx={{ pl: 1, pr: 1 }}>Edit</Typography>
         </MenuItem>
+        {/*    /////         delete field //                      //*/}
         <MenuItem onClick={handleClose}>
           <DeleteForeverOutlinedIcon
             fontSize="12"

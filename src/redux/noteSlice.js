@@ -47,6 +47,42 @@ export const addNoteAsync = createAsyncThunk(
     }
   }
 );
+//
+//  delete note on api
+//
+export const deleteNoteAsync = createAsyncThunk(
+  "notes/deleteNote",
+  async (payload) => {
+    const response = await fetch(`http://localhost:8000/notes/${payload.id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      return { id: payload.id };
+    }
+  }
+);
+//
+// patch(update) favorite note on api
+//
+export const toggleFavAsync = createAsyncThunk(
+  "notes/favoriteNote",
+  async (payload) => {
+    const response = await fetch(`http://localhost:8000/notes/${payload.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        favorite: payload.favorite,
+      }),
+    });
+    if (response.ok) {
+      const note = await response.json();
+      return { note };
+    }
+  }
+);
+
 export const noteSlice = createSlice({
   name: "notes",
   initialState: [],
@@ -61,6 +97,15 @@ export const noteSlice = createSlice({
     },
     [addNoteAsync.fulfilled]: (state, action) => {
       state.push(action.payload.note);
+    },
+    [toggleFavAsync.fulfilled]: (state, action) => {
+      const index = state.findIndex(
+        (note) => note.id === action.payload.note.id
+      );
+      state[index].favorite = action.payload.note.favorite;
+    },
+    [deleteNoteAsync.fulfilled]: (state, action) => {
+      return state.filter((note) => note.id !== action.payload.id);
     },
   },
 });

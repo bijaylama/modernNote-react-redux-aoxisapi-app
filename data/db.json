@@ -3,7 +3,7 @@
     {
       "title": "Yoshi's birthday bash",
       "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "favorite": true,
+      "favorite": false,
       "id": 1,
       "date": "Jan 5, 2022",
       "color": "red"
@@ -11,7 +11,7 @@
     {
       "title": "Complete my ninja training",
       "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.",
-      "favorite": false,
+      "favorite": true,
       "id": 2,
       "date": "Jan 5, 2022",
       "color": "pink"
@@ -29,21 +29,24 @@
       "title": "bijay",
       "details": "hunter",
       "color": "#673ab7",
-      "date": "Feb 04 2022"
+      "date": "Feb 04 2022",
+      "favorite": false
     },
     {
       "id": "iVxyYAcX680htkmoGPQLY",
       "title": "xxx",
       "details": "xxx",
       "color": "#8bc34a",
-      "date": "Feb 04 2022"
+      "date": "Feb 04 2022",
+      "favorite": true
     },
     {
       "id": "sAbp21YRJblUzihsItJZj",
       "title": "gfg",
       "details": "gggg",
       "color": "#e91e63",
-      "date": "Feb 04 2022"
+      "date": "Feb 04 2022",
+      "favorite": true
     },
     {
       "id": "WVK2_2MRHJM6aR1aa6__g",
@@ -57,7 +60,8 @@
       "title": "itmmkj",
       "details": "jkjklj",
       "color": "#03a9f4",
-      "date": "Feb 04 2022"
+      "date": "Feb 04 2022",
+      "favorite": true
     }
   ]
 }

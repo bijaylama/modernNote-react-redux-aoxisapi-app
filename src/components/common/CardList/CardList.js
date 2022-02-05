@@ -1,13 +1,21 @@
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import React from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import MenuCard from "../MenuCard/MenuCard";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { myStyle } from "./myStyle";
 import ShowMoreText from "react-show-more-text";
+import { useDispatch } from "react-redux";
+import { toggleFavAsync } from "../../../redux/noteSlice";
 
 const CardList = ({ id, title, details, favorite, date, color }) => {
   const newColor = color;
+  const dispatch = useDispatch();
+
+  const favHandle = () => {
+    dispatch(toggleFavAsync({ id, favorite: !favorite }));
+  };
   return (
     <Box
       sx={{
@@ -28,19 +36,18 @@ const CardList = ({ id, title, details, favorite, date, color }) => {
     >
       <Card sx={myStyle.myCard}>
         <CardContent sx={myStyle.cardContent}>
+          {/* card header field */}
           <Typography
             sx={myStyle.cardHeader}
             color="text.secondary"
             gutterBottom
           >
-            {/* <IconButton size="small"> */}
-            <IconButton sx={{ color }}>
-              <FavoriteBorderIcon
-              // sx={{ color }}
-              />
+            <IconButton onClick={favHandle} size="small" sx={{ color }}>
+              {favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
             <MenuCard />
           </Typography>
+          {/* card title field */}
           <Typography variant="h5" component="div">
             {title}
           </Typography>
