@@ -12,11 +12,14 @@ const BasicCard = ({
   anchorEl,
   getComponent,
   handleOpen,
+  color,
   sx,
 }) => {
   return (
     <>
-      <IconButton onClick={handleOpen}>{getComponent}</IconButton>
+      <IconButton color={color} onClick={handleOpen}>
+        {getComponent}
+      </IconButton>
       <Menu
         sx={sx}
         anchorEl={anchorEl}

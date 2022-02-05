@@ -10,11 +10,11 @@ import { Provider } from "react-redux";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={myTheme}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider theme={myTheme}>
         <App />
-      </Provider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

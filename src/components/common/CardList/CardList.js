@@ -1,22 +1,13 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import React from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import MenuCard from "../MenuCard/MenuCard";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { myStyle } from "./myStyle";
 import ShowMoreText from "react-show-more-text";
 
 const CardList = ({ id, title, details, favorite, date, color }) => {
+  const newColor = color;
   return (
     <Box
       sx={{
@@ -42,8 +33,11 @@ const CardList = ({ id, title, details, favorite, date, color }) => {
             color="text.secondary"
             gutterBottom
           >
-            <IconButton size="small">
-              <FavoriteBorderIcon />
+            {/* <IconButton size="small"> */}
+            <IconButton sx={{ color }}>
+              <FavoriteBorderIcon
+              // sx={{ color }}
+              />
             </IconButton>
             <MenuCard />
           </Typography>
@@ -62,7 +56,7 @@ const CardList = ({ id, title, details, favorite, date, color }) => {
             </ShowMoreText>
           </Typography>
           <Box sx={myStyle.myFooter}>
-            <DateRangeIcon />
+            <DateRangeIcon sx={{ color, fontSize: 20 }} />
             <Typography sx={myStyle.cardDate}>{date}</Typography>
           </Box>
         </CardContent>

@@ -1,9 +1,10 @@
 import { Input } from "@mui/material";
 
-const BasicForm = ({ sx, onChange, rows, placeholder }) => {
+const BasicForm = ({ sx, value, onChange, rows, placeholder }) => {
   return (
     <Input
       onChange={onChange}
+      value={value}
       multiline
       size="medium"
       maxRows={4}

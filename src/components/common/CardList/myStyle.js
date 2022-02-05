@@ -39,6 +39,6 @@ export const myStyle = {
     pt: 1,
     mb: 2,
   },
-  myFooter: { display: "flex" },
+  myFooter: { display: "flex", alignItems: "center" },
   cardDate: { pl: 2 },
 };

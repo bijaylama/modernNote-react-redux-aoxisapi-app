@@ -11,7 +11,6 @@ const noteArray = [{}];
 const NoteList = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state.notes);
-  console.log(notes);
 
   useEffect(() => {
     dispatch(getNotesAsync());
@@ -28,6 +27,7 @@ const NoteList = () => {
         <Box sx={myStyle.cardComponent}>
           {notes.map((note) => (
             <CardList
+              key={note.id}
               id={note.id}
               title={note.title}
               details={note.details}
