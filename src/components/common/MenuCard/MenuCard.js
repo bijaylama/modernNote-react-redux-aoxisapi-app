@@ -3,13 +3,23 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Box, IconButton, Input, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Collapse,
+  IconButton,
+  Input,
+  Typography,
+} from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import BasicCard from "../BasicCard/BasicCard";
 import BasicModal from "../BasicModal/BasicModal";
 import BasicForm from "../../common/BasicForm/BasicForm";
+import { useDispatch } from "react-redux";
+import { deleteNoteAsync, updateNoteAsync } from "../../../redux/noteSlice";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -31,7 +41,10 @@ export default function MenuCard({ note }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [modal, setModal] = useState(false);
   const [action, setAction] = useState("");
-  const [input, setInput] = useState({ title: "" });
+  const [input, setInput] = useState({ title: "", details: "" });
+  const [error, setError] = useState(false);
+
+  const dispatch = useDispatch();
 
   const { id, title, details, favorite, date, color } = note;
 
@@ -52,6 +65,7 @@ export default function MenuCard({ note }) {
   const handleEdit = () => {
     setAction("edit");
     setModal(true);
+    setInput({ title, details });
     handleClose();
   };
   const handleDelete = () => {
@@ -69,17 +83,35 @@ export default function MenuCard({ note }) {
     </>
   );
   const handleChange = ({ name, value }) => {
-    console.log(value);
+    console.log(name);
 
     setInput((preValue) => {
       return {
         ...preValue,
-        title: value,
+        [name]: value,
       };
     });
   };
+  // ==================================================
+  //     update button
+  // ==================================================
+  const updateButton = () => {
+    if (input.title.trim() === "" && input.details.trim() === "") {
+      setError(true);
+    } else {
+      dispatch(
+        updateNoteAsync({
+          id,
+          title: input.title,
+          details: input.details,
+        })
+      );
+      setModal(false);
+      setError(false);
+    }
+  };
   return (
-    <div>
+    <>
       <BasicCard
         handleClose={handleClose}
         open={open}
@@ -146,15 +178,44 @@ export default function MenuCard({ note }) {
         {action === "edit" && (
           <BasicModal open={modal} close={modalClose}>
             <Box sx={style}>
+              {/* ==============================
+                      error alert
+              ============================= */}
+              <Box sx={{ width: "100%" }}>
+                <Collapse in={error}>
+                  <Alert
+                    severity="error"
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        size="small"
+                        onClick={() => {
+                          setError(false);
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                  >
+                    Enter title or content..!
+                  </Alert>
+                </Collapse>
+              </Box>
+              {/* ===============================
+                      title form
+              ================================ */}
               <BasicForm
                 name="title"
                 value={title}
                 onChange={(e) => handleChange(e.target)}
+                placeholder="Title..."
               />
               <BasicForm
                 name="details"
                 value={details}
-                rows={4}
+                placeholder="Take a note..."
+                // rows={4}
                 onChange={(e) => handleChange(e.target)}
               />
               <Box
@@ -165,10 +226,19 @@ export default function MenuCard({ note }) {
                   justifyContent: "flex-end",
                 }}
               >
-                <Button sx={{ mr: "2%" }} color="primary1" variant="contained">
+                <Button
+                  onClick={() => setModal(false)}
+                  sx={{ mr: "2%" }}
+                  color="primary1"
+                  variant="contained"
+                >
                   Cancle
                 </Button>
-                <Button color="primary1" variant="outlined">
+                <Button
+                  onClick={updateButton}
+                  color="primary1"
+                  variant="outlined"
+                >
                   Save
                 </Button>
               </Box>
@@ -196,10 +266,18 @@ export default function MenuCard({ note }) {
                   justifyContent: "space-evenly",
                 }}
               >
-                <Button color="primary1" variant="contained">
+                <Button
+                  onClick={() => dispatch(deleteNoteAsync({ id }))}
+                  color="primary1"
+                  variant="contained"
+                >
                   Yes, delete it
                 </Button>
-                <Button color="primary1" variant="outlined">
+                <Button
+                  onClick={() => setModal(false)}
+                  color="primary1"
+                  variant="outlined"
+                >
                   Cancel
                 </Button>
               </Box>
@@ -207,6 +285,6 @@ export default function MenuCard({ note }) {
           </BasicModal>
         )}
       </BasicCard>
-    </div>
+    </>
   );
 }

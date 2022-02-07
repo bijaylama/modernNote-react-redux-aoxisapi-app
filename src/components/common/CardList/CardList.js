@@ -51,17 +51,16 @@ const CardList = ({ note }) => {
           <Typography variant="h5" component="div">
             {title}
           </Typography>
-
-          <Typography variant="body1" sx={myStyle.cardDetail}>
+          <Box sx={myStyle.cardDetail}>
             <ShowMoreText
               lines={4}
               more=""
               less=""
               truncatedEndingComponent={"... "}
             >
-              {details}
+              <Typography variant="body1">{details}</Typography>
             </ShowMoreText>
-          </Typography>
+          </Box>
           <Box sx={myStyle.myFooter}>
             <DateRangeIcon sx={{ color, fontSize: 20 }} />
             <Typography sx={myStyle.cardDate}>{date}</Typography>

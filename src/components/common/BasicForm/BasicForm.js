@@ -1,6 +1,6 @@
 import { Input } from "@mui/material";
 
-const BasicForm = ({ sx, value, onChange, rows, placeholder }) => {
+const BasicForm = ({ sx, name, value, onChange, rows, placeholder }) => {
   return (
     <Input
       onChange={onChange}
@@ -9,6 +9,7 @@ const BasicForm = ({ sx, value, onChange, rows, placeholder }) => {
       size="medium"
       maxRows={4}
       rows={rows}
+      name={name}
       disableUnderline
       sx={sx}
       fullWidth

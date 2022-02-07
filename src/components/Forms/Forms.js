@@ -35,7 +35,7 @@ const Forms = ({ onClick }) => {
   //
   const handleButton = () => {
     var newDate = new Date().toString().split(" ").splice(1, 3).join(" ");
-    if (title === "" && details === "") {
+    if (title.trim() === "" && details.trim() === "") {
       setError(true);
       setOpen(false);
     } else {

@@ -90,6 +90,28 @@ export const toggleFavAsync = createAsyncThunk(
   }
 );
 // =====================================================
+// update notes on api
+// ======================================================
+export const updateNoteAsync = createAsyncThunk(
+  "notes/updateNote",
+  async (payload) => {
+    const response = await fetch(`http://localhost:8000/notes/${payload.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        title: payload.title,
+        details: payload.details,
+      }),
+    });
+    if (response.ok) {
+      const note = await response.json();
+      return { note };
+    }
+  }
+);
+// =====================================================
 // get favorite and unfavorite notes from applyMiddleware
 // ======================================================
 export const getFavAsync = createAsyncThunk(
@@ -134,6 +156,17 @@ export const noteSlice = createSlice({
     },
     [deleteNoteAsync.fulfilled]: (state, action) => {
       return state.filter((note) => note.id !== action.payload.id);
+    },
+    // ===============================================
+    //        update notes
+    // =============================================
+
+    [updateNoteAsync.fulfilled]: (state, action) => {
+      const index = state.findIndex(
+        (note) => note.id === action.payload.note.id
+      );
+      state[index].title = action.payload.note.title;
+      state[index].details = action.payload.note.details;
     },
   },
 });
