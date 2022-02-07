@@ -11,10 +11,13 @@ import ListItemText from "@mui/material/ListItemText";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import IconButton from "@mui/material/IconButton";
 import { SidebarItem } from "./consts/SidebarItem";
+import { useDispatch } from "react-redux";
+import { getFavAsync, getNotesAsync } from "../../redux/noteSlice";
 
 const drawerWidth = 240;
 
 const SideBar = () => {
+  const dispatch = useDispatch();
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer
@@ -51,7 +54,15 @@ const SideBar = () => {
         <Divider variant="middle" />
         <List>
           {SidebarItem.map((text, index) => (
-            <ListItem button key={text.id}>
+            <ListItem
+              button
+              onClick={() =>
+                text.type === "all"
+                  ? dispatch(getNotesAsync(""))
+                  : dispatch(getFavAsync(text.type))
+              }
+              key={text.id}
+            >
               <ListItemIcon>{text.icon}</ListItemIcon>
               <ListItemText primary={text.label} />
             </ListItem>

@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  applyMiddleware,
+} from "@reduxjs/toolkit";
 
 // const initialState = {
 //   notes: [
@@ -14,13 +18,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //
 // get notes api
 //
-export const getNotesAsync = createAsyncThunk("notes/getNotes", async () => {
-  const response = await fetch("http://localhost:8000/notes");
-  if (response.ok) {
-    const notes = await response.json();
-    return { notes };
+export const getNotesAsync = createAsyncThunk(
+  "notes/getNotes",
+  async (data) => {
+    const response = await fetch(`http://localhost:8000/notes?q=${data}`);
+    if (response.ok) {
+      const notes = await response.json();
+      return { notes };
+    }
   }
-});
+);
 //
 // add note on api
 //
@@ -82,6 +89,21 @@ export const toggleFavAsync = createAsyncThunk(
     }
   }
 );
+// =====================================================
+// get favorite and unfavorite notes from applyMiddleware
+// ======================================================
+export const getFavAsync = createAsyncThunk(
+  "notes/getFavNote",
+  async (data) => {
+    const response = await fetch(
+      `http://localhost:8000/notes?favorite=${data}`
+    );
+    if (response.ok) {
+      const notes = await response.json();
+      return { notes };
+    }
+  }
+);
 
 export const noteSlice = createSlice({
   name: "notes",
@@ -103,6 +125,12 @@ export const noteSlice = createSlice({
         (note) => note.id === action.payload.note.id
       );
       state[index].favorite = action.payload.note.favorite;
+    },
+    // ===============================================
+    //        getfav fulfilled
+    // =============================================
+    [getFavAsync.fulfilled]: (state, action) => {
+      return action.payload.notes;
     },
     [deleteNoteAsync.fulfilled]: (state, action) => {
       return state.filter((note) => note.id !== action.payload.id);

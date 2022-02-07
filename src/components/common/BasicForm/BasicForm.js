@@ -4,7 +4,7 @@ const BasicForm = ({ sx, value, onChange, rows, placeholder }) => {
   return (
     <Input
       onChange={onChange}
-      value={value}
+      defaultValue={value}
       multiline
       size="medium"
       maxRows={4}

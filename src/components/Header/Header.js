@@ -13,7 +13,8 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Forms from "../Forms/Forms";
 import { myStyle } from "./myStyle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getFavAsync, getNotesAsync } from "../../redux/noteSlice";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
   const totalFav = useSelector((state) =>
     state.notes.filter((val) => val.favorite === true)
   );
+  const dispatch = useDispatch();
   return (
     <>
       <Box sx={myStyle.wrapper}>
@@ -36,20 +38,24 @@ const Header = () => {
         </Paper>
         <Paper sx={myStyle.sideHeader}>
           <Toolbar>
-            {/*               total favorite               */}
+            {/* =================================================             
+                  total favorite
+              =================================================  */}
             <Box sx={myStyle.sideBox}>
               <Tooltip title={`${totalFav.length} favorite`}>
-                <IconButton>
+                <IconButton onClick={() => dispatch(getFavAsync("true"))}>
                   <Badge badgeContent={totalFav.length} color="error">
                     <FavoriteBorderIcon />
                   </Badge>
                 </IconButton>
               </Tooltip>
             </Box>
-            {/*               total note               */}
+            {/* =================================================             
+                  total notes
+              =================================================  */}
             <Box sx={{ ...myStyle.sideBox, ml: 1 }}>
               <Tooltip title={`${notes.length} note`}>
-                <IconButton>
+                <IconButton onClick={() => dispatch(getNotesAsync(""))}>
                   <Badge badgeContent={notes.length} color="primary">
                     <NoteOutlinedIcon />
                   </Badge>

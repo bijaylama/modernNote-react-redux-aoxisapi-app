@@ -9,8 +9,8 @@ import ShowMoreText from "react-show-more-text";
 import { useDispatch } from "react-redux";
 import { toggleFavAsync } from "../../../redux/noteSlice";
 
-const CardList = ({ id, title, details, favorite, date, color }) => {
-  const newColor = color;
+const CardList = ({ note }) => {
+  const { id, title, details, favorite, date, color } = note;
   const dispatch = useDispatch();
 
   const favHandle = () => {
@@ -45,7 +45,7 @@ const CardList = ({ id, title, details, favorite, date, color }) => {
             <IconButton onClick={favHandle} size="small" sx={{ color }}>
               {favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </IconButton>
-            <MenuCard />
+            <MenuCard note={note} />
           </Typography>
           {/* card title field */}
           <Typography variant="h5" component="div">
