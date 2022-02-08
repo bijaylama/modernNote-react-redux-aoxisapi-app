@@ -4,6 +4,8 @@ import Header from "../Header/Header";
 import NoteList from "../NoteList/NoteList";
 import Footer from "../Footer/Footer";
 import { myStyle } from "./myStyle";
+// import ResponsiveDrawer from "../ResponsiveDrawer";
+
 const Home = () => {
   return (
     <Box sx={myStyle.wrapper}>
@@ -11,6 +13,7 @@ const Home = () => {
       header and forms
       // */}
       <Header />
+      {/* <ResponsiveDrawer /> */}
       <NoteList />
       <Footer />
     </Box>

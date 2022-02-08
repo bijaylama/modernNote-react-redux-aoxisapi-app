@@ -1,5 +1,5 @@
 export const myStyle = {
-  wrapper: { display: "flex", flexDirection: "row" },
+  wrapper: { display: "flex", mt: { xs: 7, lg: 0 } },
   myPaper: {
     flexGrow: 1,
     display: "flex",

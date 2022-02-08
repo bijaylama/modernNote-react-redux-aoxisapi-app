@@ -1,3 +1,4 @@
+import { grey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 export const myTheme = createTheme({
@@ -5,6 +6,13 @@ export const myTheme = createTheme({
     primary1: {
       // light: will be calculated from palette.primary.main,
       main: "#0F0E17",
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+      contrastText: "#fff",
+    },
+    primary2: {
+      // light: will be calculated from palette.primary.main,
+      main: grey.A100,
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
       contrastText: "#fff",

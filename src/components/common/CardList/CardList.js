@@ -19,6 +19,7 @@ const CardList = ({ note }) => {
   return (
     <Box
       sx={{
+        maxWidth: "350px",
         position: "relative",
         "&::after": {
           content: "''",

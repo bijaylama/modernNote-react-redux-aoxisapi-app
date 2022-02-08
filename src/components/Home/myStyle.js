@@ -4,6 +4,6 @@ export const myStyle = {
     flexDirection: "column",
     display: "flex",
     mt: 4,
-    ml: 8,
+    ml: { xs: 4, lg: 8 },
   },
 };

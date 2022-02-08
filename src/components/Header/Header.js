@@ -15,6 +15,7 @@ import Forms from "../Forms/Forms";
 import { myStyle } from "./myStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavAsync, getNotesAsync } from "../../redux/noteSlice";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
