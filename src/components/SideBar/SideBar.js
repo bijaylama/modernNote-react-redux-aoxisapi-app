@@ -15,6 +15,8 @@ import { useDispatch } from "react-redux";
 import { getFavAsync, getNotesAsync } from "../../redux/noteSlice";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, CssBaseline } from "@mui/material";
+import { motion } from "framer-motion";
+import { Logo } from "../Logo";
 
 const drawerWidth = 240;
 
@@ -36,11 +38,12 @@ const SideBar = (props) => {
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
+            color="primary"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <EventNoteIcon />
+            {/* ============= logo ============= */}
+            <Logo />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ReactNote
@@ -50,18 +53,35 @@ const SideBar = (props) => {
       <Divider variant="middle" />
       <List>
         {SidebarItem.map((text, index) => (
-          <ListItem
-            button
-            onClick={() =>
-              text.type === "all"
-                ? dispatch(getNotesAsync(""))
-                : dispatch(getFavAsync(text.type))
-            }
+          <motion.div
             key={text.id}
+            whileHover={{
+              scale: 1.1,
+              x: 8,
+              transition: { type: "spring" },
+            }}
           >
-            <ListItemIcon>{text.icon}</ListItemIcon>
-            <ListItemText primary={text.label} />
-          </ListItem>
+            <ListItem
+              component={motion.div}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 1,
+                type: "spring",
+                delay: index / 2,
+              }}
+              button
+              onClick={() =>
+                text.type === "all"
+                  ? dispatch(getNotesAsync(""))
+                  : dispatch(getFavAsync(text.type))
+              }
+              key={text.id}
+            >
+              <ListItemIcon>{text.icon}</ListItemIcon>
+              <ListItemText primary={text.label} />
+            </ListItem>
+          </motion.div>
         ))}
       </List>
     </>
@@ -75,7 +95,6 @@ const SideBar = (props) => {
         position="fixed"
         sx={{
           boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
-
           display: { lg: "none" },
           ml: { md: `${drawerWidth}px` },
         }}
@@ -86,20 +105,11 @@ const SideBar = (props) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: {} }}
+            sx={{ mr: 2, ml: 2, display: {} }}
           >
             <MenuIcon />
           </IconButton>
-          <IconButton
-            disableRipple
-            color="primary2"
-            sx={{
-              backgroundColor: "#0F0E17",
-              borderRadius: 3,
-            }}
-          >
-            <EventNoteIcon />
-          </IconButton>
+          <Typography variant="h6">ReactNote</Typography>
         </Toolbar>
       </AppBar>
       <Box
@@ -137,6 +147,7 @@ const SideBar = (props) => {
             width: drawerWidth,
             flexShrink: 0,
             "& .MuiDrawer-paper": {
+              height: "91%",
               m: 4,
               width: drawerWidth,
               boxSizing: "border-box",

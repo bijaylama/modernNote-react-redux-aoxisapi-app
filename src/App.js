@@ -3,10 +3,11 @@ import { Grid, Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import SideBar from "./components/SideBar/SideBar";
 import Home from "./components/Home/Home";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   return (
-    <Grid container sx={{ backgroundColor: "#F0F3FA" }}>
+    <Grid container>
       <Box
         sx={{
           display: "flex",
@@ -14,7 +15,15 @@ function App() {
           mr: 4,
         }}
       >
-        <SideBar />
+        <AnimatePresence>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1, duration: 0.8, type: "spring" }}
+          >
+            <SideBar />
+          </motion.div>
+        </AnimatePresence>
         <Home />
       </Box>
     </Grid>

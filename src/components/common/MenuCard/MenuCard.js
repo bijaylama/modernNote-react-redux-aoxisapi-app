@@ -20,6 +20,8 @@ import BasicForm from "../../common/BasicForm/BasicForm";
 import { useDispatch } from "react-redux";
 import { deleteNoteAsync, updateNoteAsync } from "../../../redux/noteSlice";
 import CloseIcon from "@mui/icons-material/Close";
+import { AnimatePresence, motion } from "framer-motion";
+import BasicButton from "../BasicButton/BasicButton";
 
 const style = {
   position: "absolute",
@@ -77,11 +79,7 @@ export default function MenuCard({ note }) {
     setModal(false);
     setAction("");
   };
-  const getComponent = () => (
-    <>
-      <MoreHorizIcon />
-    </>
-  );
+
   const handleChange = ({ name, value }) => {
     console.log(name);
 
@@ -112,20 +110,23 @@ export default function MenuCard({ note }) {
   };
   return (
     <>
-      <BasicCard
-        handleClose={handleClose}
-        open={open}
+      <IconButton onClick={handleOpen}>
+        <MoreHorizIcon />
+      </IconButton>
+
+      <Menu
+        anchorEl={anchorEl}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right",
         }}
+        keepMounted
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
         }}
-        anchorEl={anchorEl}
-        handleOpen={handleOpen}
-        getComponent={getComponent()}
+        open={open}
+        onClose={handleClose}
       >
         {/* ================================================================================
                 ----- view ---------------
@@ -146,7 +147,7 @@ export default function MenuCard({ note }) {
         </MenuItem>
         {/* ================================================================================
                 ----- delete ---------------
-        ================================================================================ */}
+              ================================================================================ */}
         <MenuItem onClick={handleDelete}>
           <DeleteForeverOutlinedIcon
             fontSize="12"
@@ -154,137 +155,141 @@ export default function MenuCard({ note }) {
           />
           <Typography sx={{ pl: 1, pr: 1 }}>Delete</Typography>
         </MenuItem>
+
         {/* ================================================================================
                 ----- modal component ---------------
         ================================================================================ */}
         {/* ============================================================================
                                       view
         ============================================================================ */}
-        {action === "view" && (
-          <BasicModal open={modal} close={modalClose}>
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                {title}
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {details}
-              </Typography>
-            </Box>
-          </BasicModal>
-        )}
-        {/* ============================================================================
+        <AnimatePresence>
+          {action === "view" && (
+            <BasicModal open={modal} close={modalClose}>
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  {title}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  {details}
+                </Typography>
+              </Box>
+            </BasicModal>
+          )}
+          {/* ============================================================================
                                       edit
         ============================================================================ */}
-        {action === "edit" && (
-          <BasicModal open={modal} close={modalClose}>
-            <Box sx={style}>
-              {/* ==============================
+
+          {action === "edit" && (
+            <BasicModal open={modal} close={modalClose}>
+              <Box sx={style}>
+                {/* ==============================
                       error alert
               ============================= */}
-              <Box sx={{ width: "100%" }}>
-                <Collapse in={error}>
-                  <Alert
-                    severity="error"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        size="small"
-                        onClick={() => {
-                          setError(false);
-                        }}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                    sx={{ mb: 2 }}
-                  >
-                    Enter title or content..!
-                  </Alert>
-                </Collapse>
-              </Box>
-              {/* ===============================
+                <Box sx={{ width: "100%" }}>
+                  <Collapse in={error}>
+                    <Alert
+                      severity="error"
+                      action={
+                        <IconButton
+                          aria-label="close"
+                          size="small"
+                          onClick={() => {
+                            setError(false);
+                          }}
+                        >
+                          <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                      }
+                      sx={{ mb: 2 }}
+                    >
+                      Enter title or content..!
+                    </Alert>
+                  </Collapse>
+                </Box>
+                {/* ===============================
                       title form
               ================================ */}
-              <BasicForm
-                name="title"
-                value={title}
-                onChange={(e) => handleChange(e.target)}
-                placeholder="Title..."
-              />
-              <BasicForm
-                name="details"
-                value={details}
-                placeholder="Take a note..."
-                // rows={4}
-                onChange={(e) => handleChange(e.target)}
-              />
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  mt: 2,
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button
-                  onClick={() => setModal(false)}
-                  sx={{ mr: "2%" }}
-                  color="primary1"
-                  variant="contained"
+                <BasicForm
+                  name="title"
+                  defaultValue={title}
+                  onChange={(e) => handleChange(e.target)}
+                  placeholder="Title..."
+                />
+                <BasicForm
+                  name="details"
+                  defaultValue={details}
+                  placeholder="Take a note..."
+                  // rows={4}
+                  onChange={(e) => handleChange(e.target)}
+                />
+                <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    mt: 2,
+                    justifyContent: "flex-end",
+                  }}
                 >
-                  Cancle
-                </Button>
-                <Button
-                  onClick={updateButton}
-                  color="primary1"
-                  variant="outlined"
-                >
-                  Save
-                </Button>
+                  <BasicButton
+                    onClick={modalClose}
+                    sx={{ mr: "2%" }}
+                    color="primary1"
+                    variant="contained"
+                  >
+                    Cancle
+                  </BasicButton>
+                  <BasicButton
+                    onClick={updateButton}
+                    color="primary1"
+                    variant="outlined"
+                  >
+                    Save
+                  </BasicButton>
+                </Box>
               </Box>
-            </Box>
-          </BasicModal>
-        )}
-        {/* ============================================================================
+            </BasicModal>
+          )}
+          {/* ============================================================================
                                       delete
         ============================================================================ */}
-        {action === "delete" && (
-          <BasicModal open={modal} close={modalClose}>
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Are you sure?
-              </Typography>
-              <Typography sx={{ pb: 2 }}>
-                You won't be able to revert this!
-              </Typography>
-              <Box
-                sx={{
-                  width: "60%",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                <Button
-                  onClick={() => dispatch(deleteNoteAsync({ id }))}
-                  color="primary1"
-                  variant="contained"
+          {action === "delete" && (
+            <BasicModal open={modal} close={modalClose}>
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Are you sure?
+                </Typography>
+                <Typography sx={{ pb: 2 }}>
+                  You won't be able to revert this!
+                </Typography>
+                <Box
+                  sx={{
+                    width: "65%",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-evenly",
+                  }}
                 >
-                  Yes, delete it
-                </Button>
-                <Button
-                  onClick={() => setModal(false)}
-                  color="primary1"
-                  variant="outlined"
-                >
-                  Cancel
-                </Button>
+                  <BasicButton
+                    onClick={() => dispatch(deleteNoteAsync({ id }))}
+                    color="primary1"
+                    variant="contained"
+                  >
+                    Yes, delete it
+                  </BasicButton>
+                  <BasicButton
+                    onClick={modalClose}
+                    color="primary1"
+                    variant="outlined"
+                  >
+                    Cancel
+                  </BasicButton>
+                </Box>
               </Box>
-            </Box>
-          </BasicModal>
-        )}
-      </BasicCard>
+            </BasicModal>
+          )}
+        </AnimatePresence>
+      </Menu>
     </>
   );
 }

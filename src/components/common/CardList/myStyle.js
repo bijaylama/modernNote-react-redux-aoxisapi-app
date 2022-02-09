@@ -36,6 +36,7 @@ export const myStyle = {
   cardDetail: {
     flexGrow: 1,
     overflow: "hidden",
+
     pt: 1,
     mb: 2,
   },

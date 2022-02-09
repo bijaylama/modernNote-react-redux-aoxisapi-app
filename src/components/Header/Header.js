@@ -16,7 +16,7 @@ import { myStyle } from "./myStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavAsync, getNotesAsync } from "../../redux/noteSlice";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import { AnimatePresence } from "framer-motion";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const notes = useSelector((state) => state.notes);
@@ -69,7 +69,18 @@ const Header = () => {
       {/* //
 forms components
       // */}
-      {open && <Forms onClick={() => setOpen(false)} />}
+      <AnimatePresence>
+        {/* <motion.div
+          exit={{
+            opacity: 0,
+            height: 0,
+            scale: 0,
+            transition: { duration: 2 },
+          }}
+        > */}
+        {open && <Forms onClick={() => setOpen(false)} />}
+        {/* </motion.div> */}
+      </AnimatePresence>
     </>
   );
 };

@@ -1,6 +1,7 @@
 export const myStyle = {
   wrapper: {
     mt: 3,
+    overflow: "hidden",
   },
   myPaper: {
     boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",

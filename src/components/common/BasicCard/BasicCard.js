@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
-import { IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
+import { motion } from "framer-motion";
 
 const BasicCard = ({
   children,

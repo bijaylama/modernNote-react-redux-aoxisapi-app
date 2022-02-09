@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import {
   Box,
   Paper,
@@ -20,6 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
+import { motion } from "framer-motion";
 
 const Forms = ({ onClick }) => {
   const [title, setTitle] = useState("");
@@ -48,18 +49,43 @@ const Forms = ({ onClick }) => {
           color: newColor,
         })
       );
-      setOpen(true);
-      setError(false);
       setTitle("");
       setDetails("");
+      setOpen(true);
+      setError(false);
     }
   };
 
+  const formVariant = {
+    initial: { opacity: 0, height: 0, scale: 0 },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      height: "auto",
+      transition: {
+        duration: 0.8,
+        ease: [0.04, 0.62, 0.23, 0.98],
+      },
+    },
+    exit: {
+      opacity: 0,
+      height: 0,
+      scale: 0,
+      transition: { duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] },
+    },
+  };
   return (
-    <Box sx={myStyle.wrapper}>
-      {/* //
-// success message alert
-      // */}
+    <Box
+      component={motion.div}
+      variants={formVariant}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      sx={myStyle.wrapper}
+    >
+      {/*=============================== //
+          // success message alert
+      //============================== */}
       <Box sx={{ width: "100%" }}>
         <Collapse in={open}>
           <Alert
@@ -82,9 +108,9 @@ const Forms = ({ onClick }) => {
         </Collapse>
       </Box>
 
-      {/* /
+      {/* /================================
       // error message alert
-      // */}
+      //================================ */}
       <Box sx={{ width: "100%" }}>
         <Collapse in={error}>
           <Alert

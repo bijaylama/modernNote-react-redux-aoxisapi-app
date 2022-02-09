@@ -1,50 +1,84 @@
 {
   "notes": [
     {
-      "title": "Yoshi's birthday bash",
-      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "favorite": true,
-      "id": 1,
-      "date": "Jan 5, 2022",
-      "color": "red"
+      "id": "_3ADHccPyVUuLlB2po6Vv",
+      "title": "my name is ",
+      "details": "bijay kumar lama",
+      "color": "#e91e63",
+      "date": "Feb 07 2022",
+      "favorite": true
     },
     {
-      "title": "Complete my ninja training",
-      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.",
-      "favorite": true,
-      "id": 2,
-      "date": "Jan 5, 2022",
-      "color": "pink"
+      "id": "j-p27u6VnN762f_Em1Fy9",
+      "title": "name",
+      "details": "my name is bijay kumar lama my name is bijay kumar lama my name is bijay kumar lama my name is bijay kumar lama",
+      "color": "#0F0E17",
+      "date": "Feb 08 2022"
     },
     {
-      "title": "Order a pizza!",
-      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      "favorite": true,
-      "id": 3,
-      "date": "Jan 5, 2022",
-      "color": "yellow"
-    },
-    {
-      "id": "V2VcIF1hlKah-fy6y-tkw",
-      "title": "xbg",
-      "details": "tt",
-      "color": "#673ab7",
-      "date": "Feb 04 2022",
+      "id": "MX5tvgKl-E_Ntr7xnMNdx",
+      "title": "this is title",
+      "details": "this is details body content.",
+      "color": "#4caf50",
+      "date": "Feb 08 2022",
       "favorite": false
     },
     {
-      "id": "gh_xzCJaVKudsjSOifnMH",
-      "title": "magh",
-      "details": "push",
-      "color": "#0F0E17",
-      "date": "Feb 07 2022"
+      "id": "HSCfP0fET3cocCaHxmDKn",
+      "title": "this is title2",
+      "details": "this is details body content.2",
+      "color": "#4caf50",
+      "date": "Feb 08 2022"
     },
     {
-      "id": "qWi3OunSVsOtdACN-k7YE",
-      "title": "ff",
-      "details": "  zz",
-      "color": "#4caf50",
-      "date": "Feb 07 2022"
+      "id": "QKddMMN4R-SXSWbgKE1AT",
+      "title": "tonight",
+      "details": "tonight content ",
+      "color": "#0F0E17",
+      "date": "Feb 08 2022"
+    },
+    {
+      "id": "T4S7zRG4VLzVVilPOmFf_",
+      "title": "remember",
+      "details": "remember content body ...",
+      "color": "#ffeb3b",
+      "date": "Feb 08 2022"
+    },
+    {
+      "id": "rQJo3RAF0Tr4RruC7Omh-",
+      "title": "this is title last",
+      "details": "content last body",
+      "color": "#03a9f4",
+      "date": "Feb 08 2022"
+    },
+    {
+      "id": "U_XqdIikybU2j0zboXU9v",
+      "title": "title4",
+      "details": "contain body 4",
+      "color": "#8bc34a",
+      "date": "Feb 08 2022"
+    },
+    {
+      "id": "AXfwh2goZlWcmwES53n39",
+      "title": "fd",
+      "details": "",
+      "color": "#0F0E17",
+      "date": "Feb 08 2022"
+    },
+    {
+      "id": "9lia3WnfYS53d7FMj5OAJ",
+      "title": "vdsvs",
+      "details": "fds",
+      "color": "#607d8b",
+      "date": "Feb 08 2022",
+      "favorite": true
+    },
+    {
+      "id": "5aJhIl1QiNPJtrPtcmlE-",
+      "title": "last title",
+      "details": "last content body",
+      "color": "#f44336",
+      "date": "Feb 08 2022"
     }
   ]
 }

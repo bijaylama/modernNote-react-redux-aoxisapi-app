@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 3 }}>
       <Paper
         sx={{
           boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",

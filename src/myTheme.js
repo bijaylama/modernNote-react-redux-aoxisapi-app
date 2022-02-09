@@ -2,6 +2,9 @@ import { grey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 export const myTheme = createTheme({
+  root: {
+    background: "linear-gradient(to right, #3a7bd5, #00d2ff)",
+  },
   palette: {
     primary1: {
       // light: will be calculated from palette.primary.main,

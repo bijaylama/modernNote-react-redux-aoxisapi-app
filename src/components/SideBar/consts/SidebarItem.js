@@ -1,6 +1,8 @@
 import NoteOutlinedIcon from "@mui/icons-material/NoteOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { motion } from "framer-motion";
+
 export const SidebarItem = [
   {
     id: 1,
@@ -14,6 +16,7 @@ export const SidebarItem = [
     label: "Favorite Notes",
     type: "true",
   },
+
   {
     id: 3,
     icon: <FavoriteBorderOutlinedIcon />,
