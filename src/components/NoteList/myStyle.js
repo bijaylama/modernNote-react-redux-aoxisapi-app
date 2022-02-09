@@ -4,6 +4,8 @@ export const myStyle = {
     boxShadow: "0 0px 40px rgb(0 0 0 / 5%)",
     borderRadius: 2,
   },
+  title: { pl: 4, pr: 4, pt: 2, pb: 2 },
+
   cardComponent: {
     display: "grid",
     gridGap: "2rem",
